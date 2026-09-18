@@ -32,4 +32,5 @@ module tb;
   initial
     $monitor($time, " Sel = {%b , %b } | Out = %b", t_i[0], t_i[1], t_o); // change as required
 
+
 endmodule
