@@ -1,6 +1,6 @@
 // comp2.v
 // 2-bit unsigned magnitude comparator.
-// Given two 2-bit values A and B, exactly one of GT, LT, EQ should be 1
+// Given two 2-bit values A and B, exactly one of G, L, E should be 1
 // for any input combination.
 //
 // This module has a bug that a *self-checking* testbench should catch on
@@ -11,13 +11,13 @@
 module comp2 (
   input  [1:0] A,
   input  [1:0] B,
-  output       GT,
-  output       LT,
-  output       EQ
+  output       P,
+  output       Q,
+  output       R
 );
 
-  assign EQ = (A == B);
-  assign GT = (A >= B);
-  assign LT = (A <  B);
+  assign R = (A == B);
+  assign P = (A > B);
+  assign Q = (A < B);
 
 endmodule
