@@ -29,11 +29,43 @@ module cla4(
   output       cout
 );
 
-  wire p0, p1, p2, p3;
-  wire g0, g1, g2, g3;
-  wire c1, c2, c3;
 
   // TODO: your gate-level P/G, carry, and sum logic goes here.
   // (cout should be connected to c4.) Remember the delay on every gate.
+
+  wire j0, j1, j2, j3;
+  wire g0, g1, g2, g3;
+  wire c1, c2, c3 ,i1 ,i2 ,i3 ,i4 ,i5 ,i6 ,i7 ,i8 ,i9 ,i10;
+
+  xor #2 (j0,a[0],b[0]);
+  xor #2 (j1,a[1],b[1]);
+  xor #2 (j2,a[2],b[2]);
+  xor #2 (j3,a[3],b[3]);
+
+  and #2 (g0,a[0],b[0]);
+  and #2 (g1,a[1],b[1]);
+  and #2 (g2,a[2],b[2]);
+  and #2 (g3,a[3],b[3]);
+
+  and #2 (i1,j0,cin);
+  and #2 (i2,j1,g0);
+  and #2 (i3,j0,cin,j1);
+  and #2 (i4,g1,j2);
+  and #2 (i5,g0,j1,j2);
+  and #2 (i6,cin,j0,j1,j2);
+  and #2 (i7,cin,j0,j1,j2,j3);
+  and #2 (i8,g0,j1,j2,j3);
+  and #2 (i9,g1,j2,j3);
+  and #2 (i10,g2,j3);
+
+  or #2 (c1,i1,g0);
+  or #2 (c2,i2,i3,g1);
+  or #2 (c3,i4,i5,i6,g2);
+  or #2 (cout,i7,i8,i9,i10,g3);
+
+  xor #2(sum[0],j0,cin);
+  xor #2(sum[1],j1,c1);
+  xor #2(sum[2],j2,c2);
+  xor #2(sum[3],j3,c3);
 
 endmodule
